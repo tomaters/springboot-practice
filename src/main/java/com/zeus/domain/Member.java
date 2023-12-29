@@ -7,13 +7,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@Getter
-@Setter
-@ToString
+@Data
 public class Member {
 	@Size(max = 12) // sets max size of userId
 	@NotBlank // prohibits userId from being blank; if blank returns error

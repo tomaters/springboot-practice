@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zeus.domain.Board;
 import com.zeus.domain.Card;
@@ -238,6 +236,24 @@ public class HomeController {
 			log.info("errors: " + result.getAllErrors());
 			return "registerSpringForm";
 		}
-		return "register";
+		List<String> hobbyList = member.getHobbyList();
+		if(hobbyList != null) {
+			for(String data : hobbyList) {
+				log.info("hobbyMap: " + data);
+			}
+		}
+		return "success";
+	}
+	
+	@GetMapping("/registerSpringFormCheckboxes01")
+	public String registerSpringFormCheckboxes01(Model model) {
+		log.info("registerSpringFormCheckboxes01");
+		Map<String, String> hobbyMap = new HashMap<String, String>();
+		hobbyMap.put("1", "Sleep");
+		hobbyMap.put("2", "Eat");
+		hobbyMap.put("3", "Poop");
+		model.addAttribute("hobbyMap", hobbyMap);
+		model.addAttribute("member", new Member());
+		return "registerSpringFormCheckboxes01";
 	}
 }
